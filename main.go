@@ -6,11 +6,14 @@ import (
 	"quant/base/indicator"
 	"time"
 
+	"quant/provider"
 	_ "quanta/project"
 )
 
 func main() {
 
+	provider_ := provider.NewFileProvider("/Users/milliyang/go/src/quant/spider/export")
+	quant.RegisterProvider(provider_)
 	quant.Run()
 
 	sma := indicator.NewSMA(6)

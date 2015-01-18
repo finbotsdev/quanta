@@ -18,11 +18,11 @@ func init() {
 	proj := quant.NewProject()
 	proj.Name = "ProjectA"
 
-	proj.AddInstrument("s000001")
-	proj.AddInstrument("s000002")
-	proj.AddInstrument("s000003")
-	proj.AddInstrument("s000004")
-	proj.AddInstrument("s000005")
-	proj.AddInstrument("s000006")
+	proj.AddInstrument("STO000001")
+	proj.AddInstrument("STO000002")
+	proj.AddInstrument("STO000012")
+	proj.AddInstrument("STO000004")
+	proj.AddInstrument("STO000005")
+	proj.AddInstrument("STO000006")
 	proj.Strategy(strategy.MyStrategy{})
 }
