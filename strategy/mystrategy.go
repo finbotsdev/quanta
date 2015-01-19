@@ -25,7 +25,10 @@ func (this *MyStrategy) Init(symbol string) {
 		fmt.Println("MyStrategy.Init()")
 	}
 	this.Strategy.Init(symbol)
+
+	// ToDo: init your strategy below:
 	this.Name = "MyStrategy"
+
 }
 
 func (this *MyStrategy) OnStrategyStart() {
@@ -33,6 +36,7 @@ func (this *MyStrategy) OnStrategyStart() {
 }
 
 func (this *MyStrategy) OnStrategyStop() {
+	fmt.Println("MyStrategy", "OnStrategyStop", "Name", this.Name, "Symbol:", this.Symbol)
 
 }
 
@@ -41,7 +45,7 @@ func (this *MyStrategy) OnBarOpen(bar bar.Bar) {
 }
 
 func (this *MyStrategy) OnBar(bar bar.Bar) {
-	fmt.Println("MyStrategy", "OnBar")
+	fmt.Println("MyStrategy", this.Symbol, "OnBar")
 
 }
 

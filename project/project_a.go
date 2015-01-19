@@ -25,4 +25,6 @@ func init() {
 	proj.AddInstrument("STO000005")
 	proj.AddInstrument("STO000006")
 	proj.Strategy(strategy.MyStrategy{})
+	proj.Strategy(strategy.MyStrategy2{})
+
 }
