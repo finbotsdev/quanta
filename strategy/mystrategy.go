@@ -25,6 +25,7 @@ type MyStrategy struct {
 	sma   *indicator.SMA
 	ema16 *indicator.EMA
 	ema26 *indicator.EMA
+	macd  *indicator.MACD
 }
 
 func (this *MyStrategy) Init(symbol string, barSeries *bar.BarSeries) {
@@ -44,6 +45,7 @@ func (this *MyStrategy) OnStrategyStart() {
 		this.sma = indicator.NewSMA(this.BarSeries, 6)
 		this.ema16 = indicator.NewEMA(this.BarSeries, 16)
 		this.ema26 = indicator.NewEMA(this.BarSeries, 26)
+		this.macd = indicator.NewMACD(this.BarSeries, 16, 26, 9)
 	}
 }
 
@@ -56,6 +58,10 @@ func (this *MyStrategy) OnStrategyStop() {
 		printslice("ema16:", this.ema16.Values())
 		printslice("ema26:", this.ema26.Values())
 
+		fmt.Println("macd:")
+		printslice("short ema:", this.macd.ShortEmaValues())
+		printslice("long ema:", this.macd.LongEmaValues())
+		printslice("osc:", this.macd.OscValues())
 	}
 }
 
