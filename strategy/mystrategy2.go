@@ -16,11 +16,11 @@ type MyStrategy2 struct {
 	strategy.Strategy
 }
 
-func (this *MyStrategy2) Init(symbol string) {
+func (this *MyStrategy2) Init(symbol string, barSeries *bar.BarSeries) {
 	if debug {
 		fmt.Println("MyStrategy2.Init()")
 	}
-	this.Strategy.Init(symbol)
+	this.Strategy.Init(symbol, barSeries)
 	this.Name = "MyStrategy2"
 }
 

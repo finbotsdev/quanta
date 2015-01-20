@@ -3,11 +3,14 @@ package strategy
 import (
 	"fmt"
 	"quant/base/bar"
+	"quant/base/indicator"
 	"quant/base/strategy"
 )
 
 const (
-	debug = true
+	debug = false
+
+	test_bar_series_and_sma = true
 )
 
 func init() {
@@ -18,37 +21,58 @@ func init() {
 
 type MyStrategy struct {
 	strategy.Strategy
+
+	sma *indicator.SMA
 }
 
-func (this *MyStrategy) Init(symbol string) {
+func (this *MyStrategy) Init(symbol string, barSeries *bar.BarSeries) {
 	if debug {
 		fmt.Println("MyStrategy.Init()")
 	}
-	this.Strategy.Init(symbol)
+	this.Strategy.Init(symbol, barSeries)
 
 	// ToDo: init your strategy below:
 	this.Name = "MyStrategy"
-
 }
 
 func (this *MyStrategy) OnStrategyStart() {
 	fmt.Println("MyStrategy", "OnStrategyStart", "Name", this.Name, "Symbol:", this.Symbol)
+
+	if test_bar_series_and_sma {
+		this.sma = indicator.NewSMA(this.BarSeries, 6)
+	}
 }
 
 func (this *MyStrategy) OnStrategyStop() {
 	fmt.Println("MyStrategy", "OnStrategyStop", "Name", this.Name, "Symbol:", this.Symbol)
 
+	if test_bar_series_and_sma {
+		printslice("base:", this.BarSeries.Values())
+		printslice("sma:", this.sma.Values())
+	}
 }
 
-func (this *MyStrategy) OnBarOpen(bar bar.Bar) {
+func (this *MyStrategy) OnBar(bar_ bar.Bar) {
+	if debug {
+		fmt.Println("MyStrategy", this.Symbol, "OnBar")
+	}
 
+	now := this.BarSeries.Now()
+	if !this.sma.IsFake(&now) {
+		if this.sma.ValueAtTime(&now) > this.BarSeries.ValueAtTime(&now) {
+			fmt.Print("sma > base: Buy\n")
+
+			printslice("base:", this.BarSeries.Values())
+			printslice("sma:", this.sma.Values())
+		}
+	}
 }
 
-func (this *MyStrategy) OnBar(bar bar.Bar) {
-	fmt.Println("MyStrategy", this.Symbol, "OnBar")
-
-}
-
-func (this *MyStrategy) OnBarSlice(size int) {
+func printslice(tag string, values []float64) {
+	fmt.Print(tag, " ")
+	for _, one := range values {
+		fmt.Printf("%0.3f ", one)
+	}
+	fmt.Print("\n")
 
 }
