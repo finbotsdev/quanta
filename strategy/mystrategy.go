@@ -74,7 +74,7 @@ func (this *MyStrategy) OnBar(bar_ bar.Bar) {
 	now := bar_.DateTime
 
 	if !this.sma.IsFake(&now) {
-		if this.sma.ValueAtTime(&now) > this.BarSeries.ValueAtTime(&now) {
+		if false && this.sma.ValueAtTime(&now) > this.BarSeries.ValueAtTime(&now) {
 			fmt.Print("sma > base: Buy\n")
 
 			printslice("base:", this.BarSeries.Values())
@@ -89,5 +89,4 @@ func printslice(tag string, values []float64) {
 		fmt.Printf("%0.3f ", one)
 	}
 	fmt.Print("\n")
-
 }
