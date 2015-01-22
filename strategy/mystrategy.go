@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"quant/base/bar"
 	"quant/base/indicator"
+	"quant/base/series"
 	"quant/base/strategy"
 )
 
@@ -28,7 +29,7 @@ type MyStrategy struct {
 	macd  *indicator.MACD
 }
 
-func (this *MyStrategy) Init(symbol string, barSeries *bar.BarSeries) {
+func (this *MyStrategy) Init(symbol string, barSeries *series.BarSeries) {
 	if debug {
 		fmt.Println("MyStrategy.Init()")
 	}

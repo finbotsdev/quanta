@@ -3,6 +3,7 @@ package strategy
 import (
 	"fmt"
 	"quant/base/bar"
+	"quant/base/series"
 	"quant/base/strategy"
 )
 
@@ -16,7 +17,7 @@ type MyStrategy2 struct {
 	strategy.Strategy
 }
 
-func (this *MyStrategy2) Init(symbol string, barSeries *bar.BarSeries) {
+func (this *MyStrategy2) Init(symbol string, barSeries *series.BarSeries) {
 	if debug {
 		fmt.Println("MyStrategy2.Init()")
 	}
