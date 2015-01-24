@@ -20,7 +20,7 @@ func init() {
 
 	// proj.AddInstrument("STO000001")
 	proj.AddInstrument("STO000002")
-	proj.AddInstrument("STO000012")
+	// proj.AddInstrument("STO000012")
 	// proj.AddInstrument("STO000004")
 	// proj.AddInstrument("STO000005")
 	// proj.AddInstrument("STO000006")

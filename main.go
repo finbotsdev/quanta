@@ -13,10 +13,11 @@ import (
 
 func main() {
 
-	if false {
+	if true {
 		provider_ := provider.NewFileProvider("/Users/milliyang/go/src/quant/spider/export")
 		quant.RegisterProvider(provider_)
 		quant.Run()
+		return
 	}
 
 	fSeries := series.NewFloatSeries()
