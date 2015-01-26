@@ -5,6 +5,7 @@ import (
 	"quant"
 	"quant/base/indicator"
 	"quant/base/series"
+	"quantfront"
 	"time"
 
 	"quant/provider"
@@ -17,6 +18,7 @@ func main() {
 		provider_ := provider.NewFileProvider("/Users/milliyang/go/src/quant/spider/export")
 		quant.RegisterProvider(provider_)
 		quant.Run()
+		quantfront.Run()
 		return
 	}
 
