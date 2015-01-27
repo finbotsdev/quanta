@@ -49,6 +49,7 @@ func (this *MyStrategy) OnStrategyStart() {
 		this.macd = indicator.NewMACD(this.BarSeries, 16, 26, 9)
 	}
 
+	this.Draw(0, this.BarSeries)
 	this.Draw(0, this.sma)
 	this.Draw(0, this.ema16)
 	this.Draw(0, this.ema26)
